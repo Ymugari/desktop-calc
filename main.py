@@ -1,5 +1,6 @@
 import tkinter as tk
 import math
+from decimal import Decimal
 
 
 class Calculator:
@@ -178,7 +179,7 @@ class Calculator:
     def reciprocal_number(self):
         value = self.input_field.get()
         if value != '0' and value != '':
-            self.answer = f'{1 / float(value)}'
+            self.answer = f'{Decimal(1 / float(value))}'
             if int(float(self.answer)) / float(self.answer) == 1.0:
                 self.answer = int(float(self.answer))
         if value == '0':
@@ -206,7 +207,7 @@ class Calculator:
     def sqrt(self):
         value = self.input_field.get()
         if int(math.sqrt(float(value))) / float(math.sqrt(float(value))) != 1.0:
-            self.answer = f'{math.sqrt(float(value))}'
+            self.answer = f'{Decimal(math.sqrt(float(value)))}'
             self.input_field.delete(0, tk.END)
             self.input_field.insert(0, self.answer)
         else:
@@ -246,22 +247,22 @@ class Calculator:
             if int(float(self.f_num)) / float(self.f_num) == 1.0 and int(float(second_num)) / float(second_num) == 1.0:
                 self.answer = f'{int(self.f_num) + int(second_num)}'
             else:
-                self.answer = f'{float(self.f_num) + float(second_num)}'
+                self.answer = f'{Decimal(str(float(self.f_num))) + Decimal(str(float(second_num)))}'
         elif self.operation == 'minus':
             if int(float(self.f_num)) / float(self.f_num) == 1.0 and int(float(second_num)) / float(second_num) == 1.0:
                 self.answer = f'{int(self.f_num) - int(second_num)}'
             else:
-                self.answer = f'{float(self.f_num) - float(second_num)}'
+                self.answer = f'{Decimal(str(float(self.f_num))) - Decimal(str(float(second_num)))}'
         elif self.operation == 'multiplication':
             if int(float(self.f_num)) / float(self.f_num) == 1.0 and int(float(second_num)) / float(second_num) == 1.0:
                 self.answer = f'{int(self.f_num) * int(second_num)}'
             else:
-                self.answer = f'{float(self.f_num) * float(second_num)}'
+                self.answer = f'{Decimal(str(float(self.f_num))) * Decimal(str(float(second_num)))}'
         elif self.operation == 'division':
             if second_num == '0':
                 self.answer = 'ERR'
             else:
-                self.answer = eval(self.f_num + '/' + second_num)
+                self.answer = f'{Decimal(str(float(self.f_num))) / Decimal(str(float(second_num)))}'
                 if int(float(self.answer)) / float(self.answer) == 1.0:
                     self.answer = f'{str(int(self.answer))}'
                 else:
